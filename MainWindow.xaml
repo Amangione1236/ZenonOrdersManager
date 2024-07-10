@@ -1,0 +1,189 @@
+﻿<Window x:Class="EBSOrdersManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EBSOrdersManager"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        WindowState="Maximized"
+        d:DesignHeight="1080" 
+        d:DesignWidth="1920">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock FontSize="40"
+                   Grid.ColumnSpan="3"
+                   Foreground="{StaticResource blue_ebs}"
+                   FontFamily="{StaticResource MontserratBold}"
+                   Margin="25,0"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="{Binding Title}" 
+                   d:Text="Ordini">
+        </TextBlock>
+
+        <Button Grid.Row="1"
+            Grid.ColumnSpan="3"
+            BorderBrush="{StaticResource grey_medium}"
+            Background="{StaticResource white}"
+            Foreground="{StaticResource grey_dark}" 
+            FontFamily="{StaticResource MontserratRegular}"
+            d:Content="Prova123"
+            FontSize="34"
+            Content="{Binding SearchedText}"
+            Command="{Binding SearchCommand}"
+            HorizontalContentAlignment="Left"
+            Margin="32,0,32,0"
+            Padding="25,0,75,0">
+        </Button>
+
+        <Image Grid.Row="1" 
+         Grid.ColumnSpan="3"
+       Source="{StaticResource lens}"
+       IsHitTestVisible="False"
+       HorizontalAlignment="Right"
+       Margin="5,5,50,5"/>
+
+        <ListView x:Name="Entries"
+                  Grid.ColumnSpan="3"
+              Margin="30"
+              Grid.Row="2"
+              BorderThickness="0"
+              HorizontalContentAlignment="Stretch"
+              ItemsSource="{Binding Orders}"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+              SelectedItem="{Binding SelectedOrder}"
+              SelectedIndex="{Binding SelectedOrderIndex}"
+              d:ItemsSource="{d:SampleData ItemCount=5}" 
+              Foreground="{StaticResource grey_dark}" 
+              Background="{StaticResource white}">
+
+            <ListView.ItemContainerStyle>
+
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                        Value="Stretch"/>
+
+                    <Setter Property="Height"
+                        Value="50"/>
+
+                    <Setter Property="Margin"
+                        Value="2,1"/>
+
+                    <Setter Property="BorderThickness"
+                            Value="1,0,1,1"/>
+
+                    <Setter Property="BorderBrush"
+                            Value="{StaticResource grey_medium}"/>
+                </Style>
+
+            </ListView.ItemContainerStyle>
+
+            <ListView.View>
+
+                <GridView AllowsColumnReorder="False"
+                      ColumnHeaderContainerStyle="{StaticResource OrderColumnHeaderStyle}">
+
+                    <GridViewColumn Header="{Binding OrderCodeHeader}"
+                                Width="300"
+                                HeaderContainerStyle="{StaticResource LeftOrderColumnHeaderStyle}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock 
+                                        FontFamily="{StaticResource MontserratRegular}"
+                                        HorizontalAlignment="Left" 
+                                       FontSize="24" 
+                                       Text="{Binding OrderCode}"
+                                       Foreground="{StaticResource grey_dark}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="{Binding ProductCodeHeader}"
+                                Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Left" 
+                                       FontSize="24"
+                                        FontFamily="{StaticResource MontserratRegular}" 
+                                       Text="{Binding ProductCode}"
+                                       Foreground="{StaticResource grey_dark}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="{Binding DescriptionHeader}"
+                                Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Left" 
+                                       Foreground="{StaticResource grey_dark}"
+                                       FontSize="24" 
+                                        FontFamily="{StaticResource MontserratRegular}"
+                                       Text="{Binding Description}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="{Binding QuantityHeader}"
+                                Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Left" 
+                                       FontSize="24" 
+                                        FontFamily="{StaticResource MontserratRegular}"
+                                       Foreground="{StaticResource grey_dark}"
+                                       Text="{Binding Quantity}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Background="{StaticResource grey_light}"
+                FontFamily="{StaticResource MontserratSemiBold}"
+                Content="Esci"
+                Command="{Binding GoBackCommand}"
+                FontSize="30"
+                Margin="30,10">
+        </Button>
+
+        <Button Grid.Row="3"
+                Grid.Column="1"
+                Background="{StaticResource grey_light}"
+                FontFamily="{StaticResource MontserratSemiBold}"
+                Content="Elimina"
+                Command="{Binding DeleteOrderCommand}"
+                FontSize="30"
+                Margin="30,10">
+        </Button>
+
+        <Button Grid.Row="3"
+                Grid.Column="2"
+                Background="{StaticResource grey_light}"
+                FontFamily="{StaticResource MontserratSemiBold}"
+                Content="Crea"
+                Command="{Binding CreateOrderCommand}"
+                FontSize="30"
+                Margin="30,10">
+        </Button>
+
+    </Grid>
+</Window>

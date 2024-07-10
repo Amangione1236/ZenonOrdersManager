@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="lens.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lens.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+</Project>

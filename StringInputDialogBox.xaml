@@ -1,0 +1,79 @@
+﻿<Window x:Class="EBSOrdersManager.StringInputDialogBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EBSOrdersManager"
+        mc:Ignorable="d"
+        Title="StringInputDialogBox"        
+        WindowStartupLocation="CenterScreen"
+         WindowStyle="None"
+         ResizeMode="NoResize"
+         WindowState="Maximized"
+         AllowsTransparency="True">
+
+    <Window.Background>
+        <SolidColorBrush Opacity="0.6" Color="Black"/>
+    </Window.Background>
+    
+    <Grid>
+
+        <Border Grid.RowSpan="4" 
+                Grid.ColumnSpan="3"
+                d:Visibility="Visible"
+                Background="#99000000">
+
+            <StackPanel Margin="400,300,400,0">
+
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,25,0,25"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <TextBlock Name="Title"
+                           Foreground="{StaticResource white}"
+                           d:Text="Inserisci bla bla bla"
+                           Text="{Binding InputLabel}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="40">
+                </TextBlock>
+
+                <TextBox Name="Input"
+                         d:Text="Prova prova"
+                         KeyDown="OnKeyDownHandler"
+                         Padding="20,35"
+                         Text="{Binding InputText}"
+                         FontSize="35"
+                         HorizontalContentAlignment="Left"
+                         VerticalAlignment="Center">
+
+                </TextBox>
+
+                <Button Background="{StaticResource grey_light}"
+                        FontFamily="{StaticResource MontserratSemiBold}"
+                        Content="Conferma"
+                        Command="{Binding ConfirmCommand}"
+                        FontSize="30"
+                        Padding="25"
+                        Margin="200,0" 
+                        Click="Confirm_Click">
+                </Button>
+
+                <Button Name="btnCancel"
+                        Background="{StaticResource grey_light}"
+                        FontFamily="{StaticResource MontserratSemiBold}"
+                        Content="Annulla"
+                        Command="{Binding CancelCommand}"
+                        FontSize="30"
+                        Padding="25"
+                        Margin="200,25"
+                        Click="Cancel_Click">
+                </Button>
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+</Window>
